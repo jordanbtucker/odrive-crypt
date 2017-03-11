@@ -1,5 +1,7 @@
 /* eslint camelcase: off */
 
+'use strict'
+
 const crypto = require('crypto')
 const stream = require('stream')
 

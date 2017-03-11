@@ -1,3 +1,5 @@
+'use strict'
+
 const Decipher = require('./decipher')
 
 const FILENAME_PREFIX_SIZE = 4
