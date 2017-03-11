@@ -40,14 +40,14 @@ npm install --save odrive-crypt
 const odriveCrypt = require('odrive-crypt')
 ```
 
-### odriveCrypt.createReadStream (passphrase, path)
+### odriveCrypt.createReadStream(passphrase, path)
 
 Returns a readable stream of decrypted data.
 
 - `passphrase` (`string`|`Buffer`): The passphrase used to encrypted the data.
 - `path` (`string`|`Buffer`): The path to the file to decrypt.
 
-### odriveCrypt.decryptFile (passphrase, inFilename, outFilename, callback)
+### odriveCrypt.decryptFile(passphrase, inFilename, outFilename, callback)
 
 Decrypts a file asynchronously.
 
@@ -56,11 +56,11 @@ Decrypts a file asynchronously.
 - `outFilename` (`string`|`Buffer`): The destination of the decrypted file.
 - `callback` (`(err) => void`)
 
-### odriveCrypt.decryptFileSync (passphrase, inFilename, outFilename)
+### odriveCrypt.decryptFileSync(passphrase, inFilename, outFilename)
 
 Synchronous version of `decryptFile`. Not recommended for large files since the entire file is loaded into memory.
 
-### odriveCrypt.decryptFilename (passphrase, filename, callback)
+### odriveCrypt.decryptFilename(passphrase, filename, callback)
 
 Decrypts a filename asynchronously.
 
@@ -69,7 +69,7 @@ Decrypts a filename asynchronously.
 - `callback` (`(err, filename) => void`)
   - `filename` (`string`): The decrypted filename.
 
-### odriveCrypt.decryptFilenameSync (passphrase, filename)
+### odriveCrypt.decryptFilenameSync(passphrase, filename)
 
 Synchronous version of `decryptFilename`.
 
