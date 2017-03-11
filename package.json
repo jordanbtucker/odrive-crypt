@@ -1,0 +1,45 @@
+{
+  "name": "odrive-crypt",
+  "version": "0.0.1",
+  "description": "Decrypts data encrypted by odrive.",
+  "main": "src/index.js",
+  "bin": "src/bin.js",
+  "files": [
+    "src/"
+  ],
+  "scripts": {
+    "test": "tap test -Rspec --cov",
+    "coverage": "npm test && tap --coverage-report=html",
+    "lint": "eslint --fix .",
+    "prepublish": "npm run lint && npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordanbtucker/odrive-crypt.git"
+  },
+  "keywords": [
+    "odrive",
+    "decryption",
+    "decrypt",
+    "encrypt",
+    "encryption",
+    "encrypted"
+  ],
+  "author": "Jordan Tucker <jordanbtucker@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jordanbtucker/odrive-crypt/issues"
+  },
+  "homepage": "https://github.com/jordanbtucker/odrive-crypt#readme",
+  "devDependencies": {
+    "eslint": "^3.16.1",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.2",
+    "eslint-plugin-standard": "^2.0.1",
+    "tap": "^10.3.0"
+  },
+  "dependencies": {
+    "read": "^1.0.7",
+    "yargs": "^7.0.1"
+  }
+}
