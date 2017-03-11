@@ -1,8 +1,7 @@
-const assert = require('assert')
 const fs = require('fs')
 const path = require('path')
 
-require('tap').mochaGlobals()
+const tap = require('tap')
 
 const odriveCrypt = require('../src/index')
 const FileDecipher = require('../src/file-decipher')
@@ -18,46 +17,52 @@ const fileContents = 'test'
 
 try { fs.mkdirSync(outputDir) } catch (err) {}
 
-describe('createReadStream', () => {
-	it('should return a FileDecipher', () => {
+tap.test('createReadStream', t => {
+	t.test('should return a FileDecipher', t => {
 		const reader = odriveCrypt.createReadStream(passphrase, inPath)
-		assert.ok(reader instanceof FileDecipher)
+		t.ok(reader instanceof FileDecipher)
+		t.end()
 	})
+	t.end()
 })
-describe('decryptFile', () => {
-	it('should decrypt a file asynchronously', done => {
+tap.test('decryptFile', t => {
+	t.test('should decrypt a file asynchronously', t => {
 		odriveCrypt.decryptFile(passphrase, inPath, outPath, err => {
 			if (err != null) {
-				assert.fail(err)
-				done()
+				t.threw(err)
 			}
 
-			assert.strictEqual(fs.readFileSync(outPath, 'utf8'), fileContents)
-			done()
+			t.equal(fs.readFileSync(outPath, 'utf8'), fileContents)
+			t.end()
 		})
 	})
+	t.end()
 })
-describe('decryptFileSync', () => {
-	it('should decrypt a file synchronously', () => {
+tap.test('decryptFileSync', t => {
+	t.test('should decrypt a file synchronously', t => {
 		odriveCrypt.decryptFileSync(passphrase, inPath, outPath)
-		assert.strictEqual(fs.readFileSync(outPath, 'utf8'), fileContents)
+		t.equal(fs.readFileSync(outPath, 'utf8'), fileContents)
+		t.end()
 	})
+	t.end()
 })
-describe('decryptFilename', () => {
-	it('should decrypt a filename asynchronously', done => {
+tap.test('decryptFilename', t => {
+	t.test('should decrypt a filename asynchronously', t => {
 		odriveCrypt.decryptFilename(passphrase, inFilename, (err, decFilename) => {
 			if (err != null) {
-				assert.fail(err)
-				done()
+				t.threw(err)
 			}
 
-			assert.strictEqual(decFilename, outFilename)
-			done()
+			t.equal(decFilename, outFilename)
+			t.end()
 		})
 	})
+	t.end()
 })
-describe('decryptFilenameSync', () => {
-	it('should decrypt a filename synchronously', () => {
-		assert.strictEqual(odriveCrypt.decryptFilenameSync(passphrase, inFilename), outFilename)
+tap.test('decryptFilenameSync', t => {
+	t.test('should decrypt a filename synchronously', t => {
+		t.equal(odriveCrypt.decryptFilenameSync(passphrase, inFilename), outFilename)
+		t.end()
 	})
+	t.end()
 })

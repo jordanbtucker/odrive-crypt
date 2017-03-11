@@ -1,6 +1,8 @@
 const fs = require('fs')
 const path = require('path')
 
+const tap = require('tap')
+
 const fixturesDir = path.join(__dirname, 'fixtures')
 const rootDir = path.join(fixturesDir, 'root')
 const outputDir = path.join(fixturesDir, 'output')
@@ -11,8 +13,6 @@ try {
 	fs.mkdirSync(outputRootDir)
 } catch (err) {}
 
-require('tap').mochaGlobals()
-
 process.argv = [
 	'node', 'bin.js',
 	'--passphrase', 'password123',
@@ -20,8 +20,10 @@ process.argv = [
 	'-o', outputRootDir,
 ]
 
-describe('cli', () => {
-	it('should decrypt a folder', () => {
+tap.test('cli', t => {
+	t.test('should decrypt a folder', t => {
 		require('../src/bin')
+		t.end()
 	})
+	t.end()
 })

@@ -1,8 +1,7 @@
-const assert = require('assert')
 const fs = require('fs')
 const path = require('path')
 
-require('tap').mochaGlobals()
+const tap = require('tap')
 
 const FileDecipher = require('../src/file-decipher')
 
@@ -10,26 +9,28 @@ const filename = path.join(__dirname, 'fixtures', 'MaUi8C8YFNhN5dzbjNtqgXx3Cm-Pw
 const passphrase = 'password123'
 const output = 'test'
 
-describe('FileDecipher', () => {
-	it('should decrypt a file synchronously', () => {
+tap.test('FileDecipher', t => {
+	t.test('should decrypt a file synchronously', t => {
 		const decipher = new FileDecipher(passphrase)
 		const encData = fs.readFileSync(filename)
 		let decData = decipher.update(encData, null, 'utf8')
 		decData += decipher.final('utf8')
-		assert.strictEqual(decData, output)
+		t.equal(decData, output)
+		t.end()
 	})
-	it('should decrypt a file asynchronously', done => {
+	t.test('should decrypt a file asynchronously', t => {
 		const decipher = new FileDecipher(passphrase)
 		decipher.setEncoding('utf8')
 		let data = ''
 		decipher.on('data', chunk => {
 			data += chunk
 		}).on('end', () => {
-			assert.strictEqual(data, output)
-			done()
+			t.equal(data, output)
+			t.end()
 		})
 
 		const reader = fs.createReadStream(filename)
 		reader.pipe(decipher)
 	})
+	t.end()
 })
