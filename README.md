@@ -1,5 +1,7 @@
 # odrive-crypt
 
+[![Build Status](https://travis-ci.org/jordanbtucker/odrive-crypt.svg?branch=master)](https://travis-ci.org/jordanbtucker/odrive-crypt)
+
 Decrypts files encrypted by odrive.
 
 ## Installation
