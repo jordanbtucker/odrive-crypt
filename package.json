@@ -1,6 +1,6 @@
 {
   "name": "odrive-crypt",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Decrypts data encrypted by odrive.",
   "main": "src/index.js",
   "bin": "src/bin.js",
