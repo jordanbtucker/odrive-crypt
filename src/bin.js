@@ -230,26 +230,25 @@ function decryptDirectoryItems (inPath, outDir, callback) {
 	let index = 0
 	let parentPath = inPath
 	function decryptNextItem () {
+		// When there are no more items to decrypt, call the callback.
+		if (index >= items.length) {
+			callback()
+			return
+		}
+
 		const item = items[index++]
-		const subPath = path.join(parentPath, item)
-		decryptDirectoryItem(subPath, outDir, () => {
-			// If we've decrypted all of the items in the folder, call the
-			// callback, otherwise, decrypt the next item.
-			if (index >= items.length) {
-				callback()
-			} else {
-				decryptNextItem()
-			}
-		})
+
+		// If the item name is a valid URL-safe Base64 string, decrypt the item,
+		// othewise, skip it.
+		if (/^[-0-9A-Z_a-z]+$/.test(item)) {
+			const subPath = path.join(parentPath, item)
+			decryptDirectoryItem(subPath, outDir, decryptNextItem)
+		} else {
+			decryptNextItem()
+		}
 	}
 
-	// If the folder is not empty, decrypt the first item, otherwise, call the
-	// callback.
-	if (index < items.length) {
-		decryptNextItem()
-	} else {
-		callback()
-	}
+	decryptNextItem()
 }
 
 /**
