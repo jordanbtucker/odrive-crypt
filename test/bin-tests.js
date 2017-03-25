@@ -10,10 +10,8 @@ const rootDir = path.join(fixturesDir, 'root')
 const outputDir = path.join(fixturesDir, 'output')
 const outputRootDir = path.join(outputDir, 'root')
 
-try {
-	fs.mkdirSync(outputDir)
-	fs.mkdirSync(outputRootDir)
-} catch (err) {}
+try { fs.mkdirSync(outputDir) } catch (err) {}
+try { fs.mkdirSync(outputRootDir) } catch (err) {}
 
 process.argv = [
 	'node', 'bin.js',
