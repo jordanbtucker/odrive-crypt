@@ -240,7 +240,7 @@ function decryptDirectoryItems (inPath, outDir, callback) {
 
 		// If the item name is a valid URL-safe Base64 string, decrypt the item,
 		// othewise, skip it.
-		if (/^[-0-9A-Z_a-z]+$/.test(item)) {
+		if (/^[-0-9A-Z_a-z]+={0,2}$/.test(item)) {
 			const subPath = path.join(parentPath, item)
 			decryptDirectoryItem(subPath, outDir, decryptNextItem)
 		} else {
