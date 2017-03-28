@@ -25,6 +25,10 @@ function createReadStream (passphrase, path) {
  * @param {function} callback Accepts an error parameter.
  */
 function decryptFile (passphrase, inFilename, outFilename, callback) {
+	if (typeof callback !== 'function') {
+		callback = noop
+	}
+
 	let writer
 	try {
 		const reader = createReadStream(passphrase, inFilename)
@@ -72,6 +76,10 @@ function decryptFileSync (passphrase, inFilename, outFilename) {
  * @param {function} callback Accepts an error parameter.
  */
 function decryptFilename (passphrase, filename, callback) {
+	if (typeof callback !== 'function') {
+		callback = noop
+	}
+
 	try {
 		const output = decryptFilenameSync(passphrase, filename)
 		callback(null, output)
@@ -102,3 +110,8 @@ module.exports = {
 	FileDecipher,
 	FilenameDecipher,
 }
+
+/**
+ * A function that does nothing. Used when a null callback is supplied.
+ */
+function noop () {}

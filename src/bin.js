@@ -101,6 +101,10 @@ function validateArgs () {
  * @param {function} callback Accepts an error parameter.
  */
 function getPassphrase (callback) {
+	if (typeof callback !== 'function') {
+		callback = noop
+	}
+
 	// If the passphrase wasn't supplied as an argument, prompt the user for it.
 	if (argv.passphrase == null) {
 		read({
@@ -143,6 +147,10 @@ function decrypt () {
  * @param {function} callback
  */
 function decryptFile (inPath, outDir, callback) {
+	if (typeof callback !== 'function') {
+		callback = noop
+	}
+
 	// Decrypt the filename.
 	const inName = path.basename(inPath)
 
@@ -179,6 +187,10 @@ function decryptFile (inPath, outDir, callback) {
  * @param {function} callback
  */
 function decryptDirectoryName (inPath, outDir, callback) {
+	if (typeof callback !== 'function') {
+		callback = noop
+	}
+
 	// Decrypt the folder name.
 	const inName = path.basename(inPath)
 
@@ -258,6 +270,10 @@ function decryptDirectoryItems (inPath, outDir, callback) {
  * @param {function} callback
  */
 function decryptDirectoryItem (inPath, outDir, callback) {
+	if (typeof callback !== 'function') {
+		callback = noop
+	}
+
 	let stat
 	try {
 		stat = fs.statSync(inPath)
