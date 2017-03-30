@@ -46,14 +46,14 @@ const odriveCrypt = require('odrive-crypt')
 
 Returns a readable stream of decrypted data.
 
-- `passphrase` (`string`|`Buffer`): The passphrase used to encrypted the data.
+- `passphrase` (`string`|`Buffer`): The passphrase used to encrypt the data.
 - `path` (`string`|`Buffer`): The path to the file to decrypt.
 
 ### odriveCrypt.decryptFile(passphrase, inFilename, outFilename, callback)
 
 Decrypts a file asynchronously.
 
-- `passphrase` (`string`|`Buffer`): The passphrase used to encrypted the data.
+- `passphrase` (`string`|`Buffer`): The passphrase used to encrypt the data.
 - `inFilename` (`string`|`Buffer`): The name of the file to decrypt.
 - `outFilename` (`string`|`Buffer`): The destination of the decrypted file.
 - `callback` (`(err) => void`)
@@ -66,7 +66,7 @@ Synchronous version of `decryptFile`. Not recommended for large files since the 
 
 Decrypts a filename asynchronously.
 
-- `passphrase` (`string`|`Buffer`): The passphrase used to encrypted the data.
+- `passphrase` (`string`|`Buffer`): The passphrase used to encrypt the data.
 - `filename` (`string`|`Buffer`): The filename to decrypt.
 - `callback` (`(err, filename) => void`)
   - `filename` (`string`): The decrypted filename.
