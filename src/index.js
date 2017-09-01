@@ -35,10 +35,10 @@ function decryptFile (passphrase, inFilename, outFilename, callback) {
 		writer = fs.createWriteStream(outFilename)
 
 		reader
-		.on('error', handleError)
-		.on('end', callback)
-		.pipe(writer)
-		.on('error', handleError)
+			.on('error', handleError)
+			.on('end', callback)
+			.pipe(writer)
+			.on('error', handleError)
 	} catch (err) {
 		handleError(err)
 	}

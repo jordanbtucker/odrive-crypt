@@ -23,43 +23,43 @@ if (validateArgs()) {
 
 function validateArgs () {
 	argv = yargs
-	.usage('Usage: $0 <options>')
-	.example('$0 -i ~/odrive/Encryptor/my-vault -o ~/my-vault')
-	.options({
-		passphrase: {
-			alias: 'pass',
-			describe: `The passphrase used to encrypt
+		.usage('Usage: $0 <options>')
+		.example('$0 -i ~/odrive/Encryptor/my-vault -o ~/my-vault')
+		.options({
+			passphrase: {
+				alias: 'pass',
+				describe: `The passphrase used to encrypt
 			the files`,
-			type: 'string',
-		},
-		in: {
-			alias: 'i',
-			demandOption: true,
-			describe: `The file or folder to decrypt
+				type: 'string',
+			},
+			in: {
+				alias: 'i',
+				demandOption: true,
+				describe: `The file or folder to decrypt
 			If a folder, only subfolders and
 			files will be decrypted`,
-			type: 'string',
-		},
-		out: {
-			alias: 'o',
-			demandOption: true,
-			describe: `The destination folder of the
+				type: 'string',
+			},
+			out: {
+				alias: 'o',
+				demandOption: true,
+				describe: `The destination folder of the
 			decrypted file or folder`,
-			type: 'string',
-		},
-		verbose: {
-			alias: 'v',
-			describe: `List items as they are decrypted`,
-			type: 'boolean',
-		},
-		quiet: {
-			alias: 'q',
-			describe: `Don't report errors`,
-			type: 'boolean',
-		},
-	})
-	.help().alias('help', 'h')
-	.argv
+				type: 'string',
+			},
+			verbose: {
+				alias: 'v',
+				describe: `List items as they are decrypted`,
+				type: 'boolean',
+			},
+			quiet: {
+				alias: 'q',
+				describe: `Don't report errors`,
+				type: 'boolean',
+			},
+		})
+		.help().alias('help', 'h')
+		.argv
 
 	// Ensure that --in is an existing file or folder.
 	try {
