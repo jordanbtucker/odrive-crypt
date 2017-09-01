@@ -77,10 +77,11 @@ Synchronous version of `decryptFilename`.
 
 ### new odriveCrypt.FileDecipher(passphrase)
 
-Creates a decipher like `crypto.Decipher` for decrypting files.
+Creates a decipher like [`crypto.Decipher`] for decrypting files.
 
 ### new odriveCrypt.FilenameDecipher(passphrase)
 
-Creates a decipher like `crypto.Decipher` for decrypting filenames.
+Creates a decipher like [`crypto.Decipher`] for decrypting filenames.
 
 [Node.js]: https://nodejs.org/
+[`crypto.Decipher`]: https://nodejs.org/dist/latest-v8.x/docs/api/crypto.html#crypto_class_decipher
