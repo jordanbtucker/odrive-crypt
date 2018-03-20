@@ -8,10 +8,10 @@
     "src/"
   ],
   "scripts": {
-    "test": "tap test -Rspec --cov",
     "coverage": "npm test && tap --coverage-report=html",
     "lint": "eslint --fix .",
-    "prepublishOnly": "npm run lint && npm test"
+    "prepublishOnly": "npm run lint && npm test",
+    "test": "tap test -Rspec --cov"
   },
   "repository": {
     "type": "git",
