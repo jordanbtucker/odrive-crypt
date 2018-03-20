@@ -10,7 +10,9 @@
   "scripts": {
     "coverage": "npm test && tap --coverage-report=html",
     "lint": "eslint --fix .",
-    "prepublishOnly": "npm run lint && npm test",
+    "prepublishOnly": "npm run production",
+    "preversion": "npm run production",
+    "production": "npm run lint && npm test",
     "test": "tap test -Rspec --cov"
   },
   "repository": {
