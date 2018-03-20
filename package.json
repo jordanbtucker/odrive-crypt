@@ -11,7 +11,7 @@
     "test": "tap test -Rspec --cov",
     "coverage": "npm test && tap --coverage-report=html",
     "lint": "eslint --fix .",
-    "prepare": "npm run lint && npm test"
+    "prepublishOnly": "npm run lint && npm test"
   },
   "repository": {
     "type": "git",
