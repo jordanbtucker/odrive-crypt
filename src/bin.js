@@ -23,8 +23,8 @@ if (validateArgs()) {
 
 function validateArgs () {
 	argv = yargs
-		.usage('Usage: $0 <options>')
-		.example('$0 -i ~/odrive/Encryptor/my-vault -o ~/my-vault')
+		.usage('Usage: odrive-crypt <options>')
+		.example('odrive-crypt -i ~/odrive/Encryptor/my-vault -o ~/my-vault')
 		.options({
 			passphrase: {
 				alias: 'pass',
