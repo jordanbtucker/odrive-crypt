@@ -47,6 +47,11 @@ function validateArgs () {
 			decrypted file or folder`,
 				type: 'string',
 			},
+      filenameonly: {
+          alias: 'f',
+          describe: `Decrypt file names only.`,
+          type: 'boolean'
+      },
 			verbose: {
 				alias: 'v',
 				describe: `List items as they are decrypted`,
@@ -131,13 +136,37 @@ function getPassphrase (callback) {
  * Begin the decryption process.
  */
 function decrypt () {
-	if (inStat.isFile()) {
-		decryptFile(argv.in, argv.out)
-	} else if (inStat.isDirectory()) {
-		decryptDirectoryItems(argv.in, argv.out)
-	} else {
-		handlePathError(argv.in, new Error('Unsupported folder item'))
-	}
+    if (inStat.isFile()) {
+        if (argv.filenameonly) {
+            decryptFileName(argv.in, argv.out)
+        } else {
+            decryptFile(argv.in, argv.out)
+        }
+    } else if (inStat.isDirectory()) {
+        decryptDirectoryItems(argv.in, argv.out)
+    } else {
+        handlePathError(argv.in, new Error('Unsupported folder item'))
+	  }
+}
+
+function decryptFileName(inPath, outDir, callback) {
+    // Decrypt the filename.
+    let outName
+
+    inPath = path.basename(argv.in)
+
+    try {
+        outName = odriveCrypt.decryptFilenameSync(argv.passphrase, inPath)
+        console.warn("Filename: " + outName)
+    } catch (err) {
+        handlePathError(inPath, err)
+        console.warn("Filename Path error: " + inPath)
+    }
+
+    fs.appendFile(outDir+"/odrivefilenames.txt", inPath+" => "+outName+"\n", function(err) {
+        if(err) {return console.log(err);}
+        console.warn("The file was saved!");
+    })
 }
 
 /**
